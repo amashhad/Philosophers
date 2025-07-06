@@ -20,9 +20,9 @@ $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 			$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-				$(RM) $(OBJ_DIR)
+				$(RM) -f $(OBJ_DIR)
 fclean: clean
-				$(RM) $(NAME)
+				$(RM) -f $(NAME)
 re: fclean all
 
 .PHONY: all clean fclean re

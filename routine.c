@@ -6,7 +6,7 @@
 /*   By: amashhad <amashhad@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 10:16:35 by amashhad          #+#    #+#             */
-/*   Updated: 2025/07/05 20:58:23 by amashhad         ###   ########.fr       */
+/*   Updated: 2025/07/06 09:52:27 by amashhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,22 @@ void	safe_print(t_philo *philo, char *msg)
 		printf("%lldms philo.%d %s\n",
 			time_ms() - philo->data->start_time, philo->id, msg);
 	pthread_mutex_unlock(&philo->data->print_lock);
+}
+
+int	nill_case(t_philo *philo)
+{
+	long	start_time;
+
+	start_time = time_ms();
+	pthread_mutex_lock(philo->left_fork);
+	safe_print(philo, "has taken a left fork");
+	ft_usleep(philo->data->time_to_die, philo->data);
+	pthread_mutex_unlock(philo->left_fork);
+	safe_print(philo, "has died");
+	pthread_mutex_lock(&philo->data->death_lock);
+	philo->data->death_flag = 1;
+	pthread_mutex_unlock(&philo->data->death_lock);
+	return (1);
 }
 
 void	eat(t_philo *philo)
@@ -47,6 +63,11 @@ void	*philo_routine(void *arg)
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
 		usleep(1000);
+	if (philo->data->num_philos == 1)
+	{
+		nill_case(philo);
+		return (NULL);
+	}
 	while (!death_flag(philo->data))
 	{
 		eat(philo);

@@ -6,7 +6,7 @@
 /*   By: amashhad <amashhad@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 23:31:57 by amashhad          #+#    #+#             */
-/*   Updated: 2025/07/05 21:42:25 by amashhad         ###   ########.fr       */
+/*   Updated: 2025/07/05 22:08:52 by amashhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int			init_meals(t_data *data, int i);
 int			init_mutexes(t_data *data);
 int			death_flag(t_data *data);
 int			free_all(t_data *data);
+int			nill_case(t_philo *philo);
 
 void		*my_calloc(size_t nmem, size_t size);
 void		*philo_routine(void *arg);

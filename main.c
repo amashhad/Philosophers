@@ -6,31 +6,11 @@
 /*   By: amashhad <amashhad@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 21:15:14 by amashhad          #+#    #+#             */
-/*   Updated: 2025/07/05 21:40:05 by amashhad         ###   ########.fr       */
+/*   Updated: 2025/07/05 22:24:43 by amashhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-static int	nill_case(char **argv)
-{
-	long	start_time;
-
-	start_time = 0;
-	if (safe_atoi(argv[1]) == 1)
-	{
-		start_time = time_ms();
-		printf("%lldms Philosopher: %d has taken the left fork\n",
-			time_ms() - time_ms(), 1);
-		printf("%lldms Philosopher: %d is sleeping\n",
-			time_ms() - start_time, 1);
-		usleep(safe_atoi(argv[2]) * 1000);
-		printf("%lldms Philosoper: %d has died\n",
-			time_ms() - start_time, 1);
-		return (1);
-	}
-	return (0);
-}
 
 static	int	check(t_data *data, char **argv, int argc)
 {
@@ -43,8 +23,6 @@ static	int	check(t_data *data, char **argv, int argc)
 		return (1);
 	}
 	if (chk_val(argv))
-		return (1);
-	if (nill_case(argv))
 		return (1);
 	data->init_chk = full_initalization(data, argc, argv);
 	if (data->init_chk != 0)

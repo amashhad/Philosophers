@@ -6,7 +6,7 @@
 /*   By: amashhad <amashhad@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 10:14:58 by amashhad          #+#    #+#             */
-/*   Updated: 2025/07/05 20:58:20 by amashhad         ###   ########.fr       */
+/*   Updated: 2025/07/05 22:01:34 by amashhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	set_death_flag(t_data *data)
 	pthread_mutex_unlock(&data->death_lock);
 }
 
-static void	is_dead(t_data *data, int i, int *full_philos)
+void	is_dead(t_data *data, int i, int *full_philos)
 {
 	pthread_mutex_lock(&data->philos[i].meal_lock);
 	if (time_ms() - data->philos[i].last_meal > data->time_to_die)
